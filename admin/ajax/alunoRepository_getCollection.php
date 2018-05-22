@@ -20,10 +20,19 @@ if(true){
 		$criteria = $criteria."(".$map[$_POST['filtro']].")";
 	}
 
-	$aluno = new AlunoRepository;
-	$aluno->setFetchType(PDO::FETCH_ASSOC);
-	$alunoList = $aluno->getCollection(array(), $criteria);
-	echo json_encode($alunoList);	
+	$alunoRepo = new AlunoRepository;
+	$alunoRepo->setFetchType(PDO::FETCH_ASSOC);
+	$alunoList = $alunoRepo->getCollection(array(), $criteria);
+	$alunoListFinal = array();
+	foreach ($alunoList as $aluno) {
+		$presencas = $alunoRepo->getPresencas($aluno['alu_id']);
+		$faltas    = $alunoRepo->getFaltas($aluno['alu_id']);
+		$alunoFinal = $aluno;
+		$alunoFinal['presencas'] = $presencas;
+		$alunoFinal['faltas']    = $faltas;
+		array_push($alunoListFinal, $alunoFinal);
+	}
+	echo json_encode($alunoListFinal);	
 }else{
 	echo json_encode(array(
 		"erro" => "acesso não permitido"

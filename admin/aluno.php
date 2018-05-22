@@ -13,7 +13,7 @@ $alunoRepos = $alunoRepo->getCollection();
 	<link rel="stylesheet" href="../lib/skin/css/bootstrap.min.css">
 	<link rel="stylesheet" href="skin/css/admin.css">
 	<script type="text/javascript" src="../lib/skin/js/easyHTTP.js"></script>
-	<script type="text/javascript" src="skin/js/dataTable.js"></script>
+	<script type="text/javascript" src="skin/js/dataTableA.js"></script>
 	<script type="text/javascript" src="skin/js/formSearch.js"></script>
 	<script type="text/javascript" src="skin/js/aluno.js"></script>
 </head>
