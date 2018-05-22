@@ -27,6 +27,17 @@ class ProfessorRepository extends DAO
 
 		return $result;	
 	}
+	public function deleteOrActive($id, $action){
+		$action = (int) $action;
+		$id = (int) $id;
+		echo "$id $action";
+		$sql = "UPDATE professores SET pro_ativo = :action WHERE pro_id = :id";
+		echo $sql;
+		$sth = $this->conn->prepare($sql);
+		$sth->bindParam(':action', $action, PDO::PARAM_INT);
+		$sth->bindParam(':id', $id, PDO::PARAM_INT);
+		$sth->execute(); 
+	}
 	public function getCollection($fields = array(), $criteria = null)
 	{
 

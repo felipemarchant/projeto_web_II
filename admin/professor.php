@@ -4,8 +4,8 @@ require 'templates/admin_inc.php';
 $materia = new MateriaRepository();
 $materiaList = $materia->getCollection(
 	[
-	'mat_id',
-	'mat_nome'
+		'mat_id',
+		'mat_nome'
 	]
 );
 $professor = new ProfessorRepository();
@@ -124,25 +124,29 @@ $professorList = $professor->getCollection(
 									<td><?php echo $professor->pro_nome." ".$professor->pro_sobrenome; ?></td>
 									<td><?php echo $professor->usu_email; ?></td>
 									<td><?php echo $professor->mat_nome; ?></td>
-									<td><div class="action"><button class="btn btn-primary btn-small">Editar</button> | <button class="btn btn-danger btn-small">Desativar</button></div></td>
+									<?php if($professor->pro_ativo == 0):?>
+										<td><div class="action"><button class="btn btn-primary btn-small">Editar</button> | <button onclick="deleteProfessor(<?php echo $professor->pro_id; ?>,<?php echo $professor->pro_ativo; ?>)" class="btn btn-success btn-small">Ativar</button></div></td>
+										<?php else:?>
+											<td><div class="action"><button class="btn btn-primary btn-small">Editar</button> | <button onclick="deleteProfessor(<?php echo $professor->pro_id; ?>,<?php echo $professor->pro_ativo; ?>)" class="btn btn-danger btn-small">Desativar</button></div></td>
+										<?php endif; ?>
+									</tr>
+								<?php endforeach; ?>
+							</tbody>
+							<tfoot>
+								<tr>
+									<th>RA</th>
+									<th>Nome</th>
+									<th>E-Mail</th>
+									<th>Matéria</th>
+									<th></th>
 								</tr>
-							<?php endforeach; ?>
-						</tbody>
-						<tfoot>
-							<tr>
-								<th>RA</th>
-								<th>Nome</th>
-								<th>E-Mail</th>
-								<th>Matéria</th>
-								<th></th>
-							</tr>
-						</tfoot>
-					</table>
+							</tfoot>
+						</table>
+					</div>
 				</div>
+
 			</div>
-			
 		</div>
-	</div>
-	<?php require 'templates/footer.php' ?>
-</body>
-</html>
+		<?php require 'templates/footer.php' ?>
+	</body>
+	</html>

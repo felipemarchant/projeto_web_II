@@ -10,7 +10,7 @@
 
 	$professor = new ProfessorRepository();
 	$professorTotal = $professor->getTotal();
-	$professor->getCollection();
+
 
 	//header("location:login.php");
 ?>

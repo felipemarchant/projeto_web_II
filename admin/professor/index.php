@@ -1,7 +1,7 @@
 <?php
 require "../templates/inc.php";
 $alunoRepo = new AlunoRepository;
-$alunoList = $alunoRepo->getCollection(['alunos.alu_id','usuarios.usu_ra','usuarios.usu_nome']);
+$alunoList = $alunoRepo->getCollection(['alunos.alu_id','usuarios.usu_ra','usuarios.usu_nome'], null, true);
 	//header("location:login.php");
 ?>
 <!DOCTYPE html>
