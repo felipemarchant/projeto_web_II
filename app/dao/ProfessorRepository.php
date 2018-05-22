@@ -16,6 +16,21 @@ class ProfessorRepository extends DAO
 
 		return $cCount;
 	}
+	public function getFrequenciaCollection($idAluno, $idProfessor)
+	{
+
+		$result = null;
+
+		$sql  = "SELECT * FROM professores ";
+		$sql .= "INNER JOIN materias ON materias.pro_id = professores.pro_id ";
+		$sql .= "INNER JOIN frequencias ON frequencias.mat_id = materias.mat_id ";
+		$sql .= "WHERE professores.pro_id = '$idProfessor' AND frequencias.alu_id = '$idAluno' ";
+		$sth  = $this->conn->prepare($sql);
+		$sth->execute();
+		$result = $sth->fetchAll($this->fetch_type);
+
+		return $result;	
+	}
 	public function findOnly($id)
 	{
 		$result = null;

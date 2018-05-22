@@ -12,8 +12,10 @@ $alunoList = $alunoRepo->getCollection(['alunos.alu_id','usuarios.usu_ra','usuar
 	<title>Admin | Gerenciar Alunos</title>
 	<link rel="stylesheet" href="../../lib/skin/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../skin/css/admin.css">
+	<script type="text/javascript" src="../../lib/skin/js/easyHTTP.js"></script>
+	<script type="text/javascript" src="../skin/js/professor_index.js"></script>
 </head>
-<body id="admin_aluno">	
+<body id="admin_professor_index">	
 	<!-- Include Menu -->
 	<?php require '../templates/header.php' ?>
 	<br>
@@ -108,7 +110,7 @@ $alunoList = $alunoRepo->getCollection(['alunos.alu_id','usuarios.usu_ra','usuar
 						<tbody>
 							<?php foreach($alunoList as $aluno): ?>
 								<tr>
-									<td><?php echo $aluno->usu_ra; ?></td>
+									<td onclick="findOnly(<?php echo $aluno->alu_id; ?>)"><?php echo $aluno->usu_ra; ?></td>
 									<td><?php echo $aluno->alu_nome; ?></td>
 								</tr>
 							<?php endforeach; ?>
