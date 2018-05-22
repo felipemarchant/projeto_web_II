@@ -16,6 +16,7 @@ formSearch = {
 				}else{
 					dataTable.fetchTable(null);
 				}
+				console.log(filtro);
 			});
 		}
 		formSearchSubmit.addEventListener("click", function(){
@@ -25,6 +26,7 @@ formSearch = {
 			if(formSearchSelect){
 				filtro.filtro = formSearchSelect.value;
 			}
+			console.log(filtro);
 			if(filtro.valor){
 				dataTable.fetchTable(filtro);
 			}else{
@@ -39,6 +41,7 @@ formSearch = {
 			if(formSearchSelect){
 				filtro.filtro = formSearchSelect.value;
 			}
+			console.log(filtro);
 			if(filtro.valor){
 				dataTable.fetchTable(filtro);
 			}else{

@@ -87,7 +87,7 @@ $professorList = $professor->getCollection(
 		<div class="row col-searchUser-all">
 			<div class="col-sm-2">
 				<div class="input-group">
-					<select id="formSearch_select" class="custom-select" id="">
+					<select id="formSearch_select" class="custom-select">
 						<option value="ra">RA</option>
 						<option value="nome" selected>Nome</option>
 						<option value="email">E-Mail</option>

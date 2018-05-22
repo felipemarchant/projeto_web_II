@@ -60,18 +60,18 @@ $alunoRepos = $alunoRepo->getCollection();
 		<div class="row col-searchUser-all">
 			<div class="col-sm-2">
 				<div class="input-group">
-					<select class="custom-select" id="">
-						<option value="1">RA</option>
-						<option value="2" selected>Nome</option>
-						<option value="3">E-Mail</option>
+					<select id="formSearch_select" class="custom-select">
+						<option value="ra">RA</option>
+						<option value="nome" selected>Nome</option>
+						<option value="email">E-Mail</option>
 					</select>
 				</div>
 			</div>
 			<div class="col-sm-10">
 				<div class="input-group">
-					<input type="text" placeholder="Nome" class="form-control" required>
+					<input id="formSearch_searchInput" type="text" placeholder="Nome" class="form-control" required>
 					<div class="input-group-append">
-						<button class="btn btn-primary" type="button">Pesquisar</button>
+						<button class="btn btn-primary" id="formSearch_submit" type="button">Pesquisar</button>
 					</div>
 				</div>
 			</div>
@@ -79,7 +79,7 @@ $alunoRepos = $alunoRepo->getCollection();
 		<div class="row">
 			<div class="col-sm dataTable-all">
 				<div class="data-table table-responsive">
-					<table class="table table-striped table-bordered table-fixed">
+					<table id="dataTable_table" class="table table-striped table-bordered table-fixed">
 						<thead>
 							<tr>
 								<th>RA</th>
@@ -89,11 +89,11 @@ $alunoRepos = $alunoRepo->getCollection();
 								<th></th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="dataTable_tbody">
 							<?php foreach ($alunoRepos as $aluno): ?>
 								<?php 
-									$presencas = $alunoRepo->getPresencas($aluno->alu_id);
-									$faltas    = $alunoRepo->getFaltas($aluno->alu_id);
+								$presencas = $alunoRepo->getPresencas($aluno->alu_id);
+								$faltas    = $alunoRepo->getFaltas($aluno->alu_id);
 								?>
 								<tr>
 									<td><?php echo $aluno->usu_ra; ?></td>

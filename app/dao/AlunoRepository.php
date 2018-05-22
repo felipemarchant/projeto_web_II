@@ -15,7 +15,7 @@ class AlunoRepository extends DAO
 		return $cCount;
 	}
 
-	public function getCollection($fields = array())
+	public function getCollection($fields = array(), $criteria = null)
 	{
 		if(empty($fields)){
 			$fields = '*';
@@ -28,7 +28,11 @@ class AlunoRepository extends DAO
 		$nivelUsu = Usuario::Aluno;
 		$sql  = "SELECT * FROM usuarios ";
 		$sql .= "INNER JOIN alunos ON usuarios.usu_usu_id = alunos.alu_id ";
-		$sql .= "WHERE usuarios.usu_nivel = $nivelUsu;";
+		$sql .= "WHERE usuarios.usu_nivel = $nivelUsu ";
+		if($criteria){
+			$sql .= $criteria; 
+		}
+		$sql .= " ;";
 		$sth = $this->conn->prepare($sql);
 		$sth->execute();
 		$result = $sth->fetchAll($this->fetch_type);
