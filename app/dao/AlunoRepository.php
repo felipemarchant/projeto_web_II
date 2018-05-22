@@ -14,8 +14,18 @@ class AlunoRepository extends DAO
 		$cCount = $this->conn->query($sql)->fetchColumn();
 		return $cCount;
 	}
-
-	public function getCollection($fields = array(), $criteria = null)
+	public function deleteOrActive($id, $action){
+		$action = (int) $action;
+		$id = (int) $id;
+		echo "$id $action";
+		$sql = "UPDATE alunos SET alu_ativo = :action WHERE alu_id = :id";
+		echo $sql;
+		$sth = $this->conn->prepare($sql);
+		$sth->bindParam(':action', $action, PDO::PARAM_INT);
+		$sth->bindParam(':id', $id, PDO::PARAM_INT);
+		$sth->execute(); 
+	}
+	public function getCollection($fields = array(), $criteria = null, $desativados = false)
 	{
 		if(empty($fields)){
 			$fields = '*';
@@ -29,6 +39,9 @@ class AlunoRepository extends DAO
 		$sql  = "SELECT * FROM usuarios ";
 		$sql .= "INNER JOIN alunos ON usuarios.usu_usu_id = alunos.alu_id ";
 		$sql .= "WHERE usuarios.usu_nivel = $nivelUsu ";
+		if($desativados){
+			$sql .= "AND alunos.alu_ativo = 1 ";
+		}
 		if($criteria){
 			$sql .= $criteria; 
 		}
@@ -39,6 +52,7 @@ class AlunoRepository extends DAO
 
 		return $result;
 	}
+
 
 	public function findOnly($id)
 	{

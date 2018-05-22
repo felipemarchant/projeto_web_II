@@ -100,25 +100,33 @@ $alunoRepos = $alunoRepo->getCollection();
 									<td><?php echo $aluno->alu_nome." ".$aluno->alu_sobrenome; ?></td>
 									<td><?php echo $aluno->usu_email; ?></td>
 									<td class="frequencia"><p class="frequencia bg-success text-light"><?php echo $presencas; ?></p> | <p class="falta bg-warning"><?php echo $faltas;?></p></td>
-									<td><div class="action"><button class="btn btn-primary btn-small">Editar</button> | <button class="btn btn-danger btn-small">Desativar</button></div></td>
-								</tr>
-							<?php endforeach; ?>
-						</tbody>
-						<tfoot>
-							<tr>
-								<th>RA</th>
-								<th>Nome</th>
-								<th>E-Mail</th>
-								<th>Frequência</th>
-								<th></th>
-							</tr>
-						</tfoot>
-					</table>
+									<td><div class="action"><button class="btn btn-primary btn-small">Editar</button> | 
+
+										<?php if($aluno->alu_ativo == 0):?>
+											<button ativo="<?php echo $aluno->alu_ativo; ?>" id="<?php echo $aluno->alu_id ?>" onclick="deleteAluno(<?php echo $aluno->alu_id; ?>,<?php echo $aluno->alu_ativo; ?>)" class="btn btn-success btn-small">Ativar</button></div></td>
+											<?php else:?>
+											<button ativo="<?php echo $aluno->alu_ativo; ?>" id="<?php echo $aluno->alu_id ?>" onclick="deleteAluno(<?php echo $aluno->alu_id; ?>,<?php echo $aluno->alu_ativo; ?>)" class="btn btn-danger btn-small">Desativar</button></div></td>
+
+											<?php endif;?>
+
+										</tr>
+									<?php endforeach; ?>
+								</tbody>
+								<tfoot>
+									<tr>
+										<th>RA</th>
+										<th>Nome</th>
+										<th>E-Mail</th>
+										<th>Frequência</th>
+										<th></th>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+					</div>
+
 				</div>
 			</div>
-			
-		</div>
-	</div>
-	<?php require 'templates/footer.php' ?>
-</body>
-</html>
+			<?php require 'templates/footer.php' ?>
+		</body>
+		</html>
