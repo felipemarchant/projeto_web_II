@@ -1,0 +1,65 @@
+html, body {
+	height: 100%;
+}
+body#portal .all,
+body#portal .all .row,
+body#portal .slide-all,
+body#portal .menu-all {
+	height: 100%;
+}
+.groupfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.slide-all {
+	background-image: url('../images/ung-fachada.jpg');
+	 /* Background image is centered vertically and horizontally at all times */
+    background-position: center center;
+  
+  /* Background image doesn't tile */
+    background-repeat: no-repeat;
+  
+  /* Background image is fixed in the viewport so that it doesn't move when 
+     the content's height is greater than the image's height */
+    background-attachment: fixed;
+  
+  /* This is what makes the background image rescale based
+     on the container's size */
+    background-size: cover;
+
+
+}
+
+.menu-all {
+	font-size: 12px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	background-color : rgb(244, 245, 250);
+	
+}
+.menu-logo {
+	margin-bottom: 30px;
+}
+.menu-all .menu-item {
+	text-decoration: none;
+}
+.menu-all .menu-item .title {
+	margin-bottom: 0;
+	font-size: 18px;
+	color: #003975;
+}
+.menu-all .menu-item .text {
+	color: #669dc9;
+	margin: 0;
+}
+.menu-all .row-right,
+.menu-all .row-left{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	width: 50%;
+	float: left;
+}
+body#portal hr {
+	margin: 5px 0;
+}

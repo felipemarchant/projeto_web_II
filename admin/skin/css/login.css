@@ -1,0 +1,77 @@
+html,body {
+	height: 100%;
+}
+
+body.admin_login {
+	background-image: url('../images/admin_login_bg.jpg');
+	background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+	background-color: #f7f9fb;
+	font-size: 14px;
+}
+body.admin_login .btn-color{
+	background-color: #003975;
+	border-color: #003975;
+}
+body.admin_login .btn-color:hover{
+	background-color: #002852;
+	border-color: #002852;
+}
+
+.admin_login .brand {
+	width: 120px;
+	height: 120px;
+	overflow: hidden;
+	border-radius: 50%;
+	margin: 0 auto;
+	margin: 40px auto;
+	box-shadow: 0 0 40px rgba(0,0,0,.05);
+}
+
+.admin_login .brand img {
+	width: 100%;
+}
+
+.admin_login .card-wrapper {
+	width: 400px;
+}
+
+.admin_login .card {
+	border-color: transparent;
+	box-shadow: 0 0 40px rgba(0,0,0,.05);
+}
+
+.admin_login .card.fat {
+	padding: 10px;
+}
+
+.admin_login .card .card-title {
+	margin-bottom: 30px;
+}
+
+.admin_login .form-control {
+	border-width: 2.3px;
+}
+
+.admin_login .form-group label {
+	width: 100%;
+}
+
+.admin_login .btn.btn-block {
+	padding: 12px 10px;
+}
+
+.admin_login .margin-top20 {
+	margin-top: 20px;
+}
+
+.admin_login .no-margin {
+	margin: 0;
+}
+
+.admin_login .footer {
+	margin: 40px 0;
+	color: #888;
+	text-align: center;
+}
