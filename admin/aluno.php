@@ -24,37 +24,73 @@ $alunoRepos = $alunoRepo->getCollection();
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 col-addUser-all">
-				<h1 class="lead text-title text-center">Adicionar Aluno</h1>
-				<form class="" method="POST" action="">
-					<div class="col-sm-10 offset-sm-1 form-inline">
-						<label class="mr-2" for="nome">Nome</label>
-						<div class="input-group mb-2 mr-sm-2">
-							<input type="text" name="nome" class="form-control" id="nome" placeholder="Nome" required>
-						</div>
+				<div id="alunoForm_add_all">				
+					<h1 class="lead text-title text-center">Adicionar Aluno</h1>
+					<form class="" method="POST" action="">
+						<div class="col-sm-10 offset-sm-1 form-inline">
+							<label class="mr-2" for="nome">Nome</label>
+							<div class="input-group mb-2 mr-sm-2">
+								<input type="text" name="nome" class="form-control"  placeholder="Nome" required>
+							</div>
 
-						<label class="mr-2" for="sobrenome">Sobrenome</label>
-						<div class="input-group mb-2 mr-sm-2">
-							<input type="text" name="sobrenome" class="form-control" id="sobrenome" placeholder="Sobrenome" required>
-						</div>
-						<label class="mr-2" for="email">E-Mail</label>
-						<div class="input-group mb-2 mr-sm-2">
-							<input type="email" name="email" class="form-control" id="email" placeholder="E-Mail" required>
-						</div>
+							<label class="mr-2" for="sobrenome">Sobrenome</label>
+							<div class="input-group mb-2 mr-sm-2">
+								<input type="text" name="sobrenome" class="form-control"  placeholder="Sobrenome" required>
+							</div>
+							<label class="mr-2" for="email">E-Mail</label>
+							<div class="input-group mb-2 mr-sm-2">
+								<input type="email" name="email" class="form-control"  placeholder="E-Mail" required>
+							</div>
 
-					</div>
-					<div class="col-sm-10 offset-sm-1 form-inline">
-						<label class="mr-2" for="nome" style="padding-right: 24px;">RA</label>
-						<div class="input-group mb-2 mr-sm-2">
-							<input type="text" name="ra" class="form-control" id="ra" placeholder="RA" required>
 						</div>
+						<div class="col-sm-10 offset-sm-1 form-inline">
+							<label class="mr-2" for="nome" style="padding-right: 24px;">RA</label>
+							<div class="input-group mb-2 mr-sm-2">
+								<input type="text" name="ra" class="form-control"  placeholder="RA" required>
+							</div>
 
-						<label class="mr-2" for="sobrenome">Senha</label>
-						<div class="input-group mb-2 mr-sm-1">
-							<input type="text" name="senha" class="form-control" id="senha" placeholder="Senha" required>
+							<label class="mr-2" for="sobrenome">Senha</label>
+							<div class="input-group mb-2 mr-sm-1">
+								<input type="text" name="senha" class="form-control"  placeholder="Senha" required>
+							</div>
+							<input type="submit" class="btn btn-success mb-2 mr-sm-1" value="Cadastrar" />
 						</div>
-						<input type="submit" class="btn btn-success mb-2 mr-sm-1" value="Cadastrar" />
-					</div>
-				</form>	
+					</form>	
+				</div>
+				<div id="alunoForm_edit_all">
+					<h1 class="lead text-title text-center">Editar Aluno</h1>
+					<form class="" method="POST" action="">
+						<div class="col-sm-10 offset-sm-1 form-inline">
+							<label class="mr-2" for="nome">Nome</label>
+							<div class="input-group mb-2 mr-sm-2">
+								<input type="text" name="nome" class="form-control"  placeholder="Nome" required>
+							</div>
+
+							<label class="mr-2" for="sobrenome">Sobrenome</label>
+							<div class="input-group mb-2 mr-sm-2">
+								<input type="text" name="sobrenome" class="form-control"  placeholder="Sobrenome" required>
+							</div>
+							<label class="mr-2" for="email">E-Mail</label>
+							<div class="input-group mb-2 mr-sm-2">
+								<input type="email" name="email" class="form-control"  placeholder="E-Mail" required>
+							</div>
+
+						</div>
+						<div class="col-sm-10 offset-sm-1 form-inline">
+							<label class="mr-2" for="nome" style="padding-right: 24px;">RA</label>
+							<div class="input-group mb-2 mr-sm-2">
+								<input type="text" name="ra" class="form-control"  placeholder="RA" required>
+							</div>
+
+							<label class="mr-2" for="sobrenome">Senha</label>
+							<div class="input-group mb-2 mr-sm-1">
+								<input type="text" name="senha" class="form-control"  placeholder="Senha" required>
+							</div>
+							<input type="button" class="btn btn-danger mb-2 mr-sm-1" value="Cancelar" />
+							<input type="submit" class="btn btn-success mb-2 mr-sm-1" value="Cadastrar" />
+						</div>
+					</form>	
+				</div>
 			</div>
 		</div>
 		<div class="row col-searchUser-all">
@@ -105,7 +141,7 @@ $alunoRepos = $alunoRepo->getCollection();
 										<?php if($aluno->alu_ativo == 0):?>
 											<button ativo="<?php echo $aluno->alu_ativo; ?>" id="<?php echo $aluno->alu_id ?>" onclick="deleteAluno(<?php echo $aluno->alu_id; ?>,<?php echo $aluno->alu_ativo; ?>)" class="btn btn-success btn-small">Ativar</button></div></td>
 											<?php else:?>
-											<button ativo="<?php echo $aluno->alu_ativo; ?>" id="<?php echo $aluno->alu_id ?>" onclick="deleteAluno(<?php echo $aluno->alu_id; ?>,<?php echo $aluno->alu_ativo; ?>)" class="btn btn-danger btn-small">Desativar</button></div></td>
+												<button ativo="<?php echo $aluno->alu_ativo; ?>" id="<?php echo $aluno->alu_id ?>" onclick="deleteAluno(<?php echo $aluno->alu_id; ?>,<?php echo $aluno->alu_ativo; ?>)" class="btn btn-danger btn-small">Desativar</button></div></td>
 
 											<?php endif;?>
 

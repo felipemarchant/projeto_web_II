@@ -27,6 +27,7 @@ window.onload = function(){
 		eHTTP.post('ajax/professorRepository_add.php', dados, function(err, data){
 			if(!data){
 				alert('Professor cadastrado com Sucesso!');
+				location.reload();
 			}
 		});
 		return false;

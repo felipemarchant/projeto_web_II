@@ -123,7 +123,7 @@ $professorList = $professor->getCollection(
 									<?php endforeach;?>
 								</select>
 							</div>
-							<input type="submit" class="btn btn-warning mb-2 mr-sm-1 float-left" value="Cancelar" />
+							<input type="button" class="btn btn-warning mb-2 mr-sm-1 float-left" value="Cancelar" />
 							<input type="submit" class="btn btn-primary mb-2 mr-sm-1 float-right" value="Editar" />
 						</div>
 					</form>	
