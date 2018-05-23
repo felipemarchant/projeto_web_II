@@ -14,6 +14,33 @@ class AlunoRepository extends DAO
 		$cCount = $this->conn->query($sql)->fetchColumn();
 		return $cCount;
 	}
+	public function add($aluno)
+	{
+		$ativo = 1;
+		$sql = "INSERT INTO alunos (alu_nome, alu_sobrenome, alu_ativo) VALUES (:nome,:sobrenome,:ativo)";
+		$sth = $this->conn->prepare($sql);
+		$sth->bindParam(':nome', $aluno['nome'], PDO::PARAM_STR);
+		$sth->bindParam(':sobrenome', $aluno['sobrenome'], PDO::PARAM_STR);
+		$sth->bindParam(':ativo', $ativo, PDO::PARAM_INT);
+		$sth->execute();
+		return $this->conn->lastInsertId();
+
+	}
+	public function addUser($profId, $usuario)
+	{
+		$nivel = 3;
+		$profId = (int)$profId;
+		$senha = sha1($usuario['senha']);
+		$sql = "INSERT INTO usuarios(usu_usu_id, usu_ra, usu_email, usu_senha, usu_nivel) VALUES (:usu_id,:usu_ra,:usu_email,:usu_senha,:usu_nivel)";
+		$sth = $this->conn->prepare($sql);
+		$sth->bindParam(':usu_id', $profId, PDO::PARAM_INT);
+		$sth->bindParam(':usu_ra', $usuario['ra'], PDO::PARAM_INT);
+		$sth->bindParam(':usu_email', $usuario['email'], PDO::PARAM_STR);
+		$sth->bindParam(':usu_senha', $senha, PDO::PARAM_STR);
+		$sth->bindParam(':usu_nivel', $nivel, PDO::PARAM_INT);
+		$sth->execute();
+
+	}
 	public function deleteOrActive($id, $action){
 		$action = (int) $action;
 		$id = (int) $id;

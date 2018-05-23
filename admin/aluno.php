@@ -2,6 +2,14 @@
 require '../admin/templates/admin_inc.php';
 $alunoRepo = new AlunoRepository();
 $alunoRepos = $alunoRepo->getCollection();
+$noProf = true;
+$materia = new MateriaRepository();
+$materiaList = $materia->getCollection(
+	[
+		'mat_id',
+		'mat_nome'
+	],$noProf
+);
 	//header("location:login.php");
 ?>
 <!DOCTYPE html>
@@ -26,7 +34,7 @@ $alunoRepos = $alunoRepo->getCollection();
 			<div class="col-sm-12 col-addUser-all">
 				<div id="alunoForm_add_all">				
 					<h1 class="lead text-title text-center">Adicionar Aluno</h1>
-					<form class="" method="POST" action="">
+					<form class="" id="formAluno_add" method="POST" action="">
 						<div class="col-sm-10 offset-sm-1 form-inline">
 							<label class="mr-2" for="nome">Nome</label>
 							<div class="input-group mb-2 mr-sm-2">
@@ -46,12 +54,12 @@ $alunoRepos = $alunoRepo->getCollection();
 						<div class="col-sm-10 offset-sm-1 form-inline">
 							<label class="mr-2" for="nome" style="padding-right: 24px;">RA</label>
 							<div class="input-group mb-2 mr-sm-2">
-								<input type="text" name="ra" class="form-control"  placeholder="RA" required>
+								<input type="number" max="99999999" oninvalid="setCustomValidity('Entre com um RA de 8 Digitos')" name="ra" class="form-control"  placeholder="RA" required>
 							</div>
 
 							<label class="mr-2" for="sobrenome">Senha</label>
 							<div class="input-group mb-2 mr-sm-1">
-								<input type="text" name="senha" class="form-control"  placeholder="Senha" required>
+								<input type="password" name="senha" class="form-control"  placeholder="Senha" required>
 							</div>
 							<input type="submit" class="btn btn-success mb-2 mr-sm-1" value="Cadastrar" />
 						</div>
@@ -79,14 +87,14 @@ $alunoRepos = $alunoRepo->getCollection();
 						<div class="col-sm-10 offset-sm-1 form-inline">
 							<label class="mr-2" for="nome" style="padding-right: 24px;">RA</label>
 							<div class="input-group mb-2 mr-sm-2">
-								<input type="text" name="ra" class="form-control"  placeholder="RA" required>
+								<input type="number" max="99999999" oninvalid="setCustomValidity('Entre com um RA de 8 Digitos')" name="ra" class="form-control"  placeholder="RA" required>
 							</div>
 
 							<label class="mr-2" for="sobrenome">Senha</label>
 							<div class="input-group mb-2 mr-sm-1">
-								<input type="text" name="senha" class="form-control"  placeholder="Senha" required>
+								<input type="password" name="senha" class="form-control"  placeholder="Senha" required>
 							</div>
-							<input type="button" class="btn btn-danger mb-2 mr-sm-1" value="Cancelar" />
+							<input type="button" onclick="hideEdit()" class="btn btn-danger mb-2 mr-sm-1" value="Cancelar" />
 							<input type="submit" class="btn btn-success mb-2 mr-sm-1" value="Cadastrar" />
 						</div>
 					</form>	

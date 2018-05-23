@@ -8,21 +8,18 @@ if ($headers["Content-type"] == "application/json"){
 header('Content-Type: application/json');
 if(true){
 	if(!in_array('', $_POST)){
-		$professor = $_POST['professor'];
+		$aluno = $_POST['aluno'];
 		$usuario   = $_POST['usuario'];
-		$idMat = $professor['materia'];
 		if(verificaRA($usuario['ra'])){
 			$newRa = geraRA();
 			echo json_encode(array(
 				"erro_ra" => "RA já em uso. Use outro :D",
 				"ra" => $newRa
 			));
-		}else{
-			$proRepo = new ProfessorRepository;
-			$matRepo = new MateriaRepository;
-			$id = $proRepo->add($professor);
-			$proRepo->addUser($id, $usuario);
-			$matRepo->setProfessor($id,$idMat);
+		}else{		
+			$aluRepo = new AlunoRepository;
+			$id = $aluRepo->add($aluno);
+			$aluRepo->addUser($id, $usuario);
 			echo json_encode(array());
 		}
 	}
@@ -31,6 +28,7 @@ if(true){
 		"erro" => "acesso não permitido"
 	));
 }
+
 
 function verificaRA($ra){
 	require_once('../../app/core/DB.php');

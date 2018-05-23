@@ -63,7 +63,7 @@ $professorList = $professor->getCollection(
 						<div class="col-sm-10 offset-sm-1 form-inline">
 							<label class="mr-2" for="nome" style="padding-right: 24px;">RA</label>
 							<div class="input-group mb-2 mr-sm-2">
-								<input type="number" name="ra" max="99999999" oninvalid="setCustomValidity('Entre com um RA de 8 Digitos')" lass="form-control"  placeholder="RA" required>
+								<input type="number" name="ra" max="99999999" oninvalid="setCustomValidity('Entre com um RA de 8 Digitos')" class="form-control"  placeholder="RA" required>
 							</div>
 
 							<label class="mr-2" for="sobrenome">Senha</label>
@@ -106,7 +106,7 @@ $professorList = $professor->getCollection(
 						<div class="col-sm-10 offset-sm-1 form-inline">
 							<label class="mr-2" for="nome" style="padding-right: 24px;">RA</label>
 							<div class="input-group mb-2 mr-sm-2">
-								<input type="number" name="ra" max="99999999" oninvalid="setCustomValidity('Entre com um RA de 8 Digitos')" lass="form-control"  placeholder="RA" required>
+								<input type="number" name="ra" max="99999999" oninvalid="setCustomValidity('Entre com um RA de 8 Digitos')" class="form-control"  placeholder="RA" required>
 							</div>
 
 							<label class="mr-2" for="sobrenome">Senha</label>
@@ -123,7 +123,7 @@ $professorList = $professor->getCollection(
 									<?php endforeach;?>
 								</select>
 							</div>
-							<input type="button" class="btn btn-warning mb-2 mr-sm-1 float-left" value="Cancelar" />
+							<input type="button" onclick="hideEdit()" class="btn btn-warning mb-2 mr-sm-1 float-left" value="Cancelar" />
 							<input type="submit" class="btn btn-primary mb-2 mr-sm-1 float-right" value="Editar" />
 						</div>
 					</form>	

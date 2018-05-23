@@ -23,9 +23,14 @@ window.onload = function(){
 			sobrenome:this.elements["sobrenome"].value,
 			materia:this.elements["materia"].value
 		};
+		var self = this;
 		eHTTP = new easyHTTP();
 		eHTTP.post('ajax/professorRepository_add.php', dados, function(err, data){
-			if(!data){
+			var data = JSON.parse(data);
+			if(data.erro_ra){
+				alert(data.erro_ra);
+				self.elements["ra"].value = data.ra;
+			}else{
 				alert('Professor cadastrado com Sucesso!');
 				location.reload();
 			}
@@ -33,3 +38,7 @@ window.onload = function(){
 		return false;
 	});
 };
+function hideEdit(){
+	document.getElementById('formProfessor_edit_all').style.display = 'none';
+	document.getElementById('formProfessor_add_all').style.display = 'block';
+}
