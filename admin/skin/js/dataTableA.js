@@ -35,6 +35,19 @@ dataTable = {
 		});
 	}
 };
+function editProfessor(id){
+	var formEditarProfessor = document.getElementById('formProfessor_edit');
+	var eHTTP = new easyHTTP();
+	id = parseInt(id);
+	eHTTP.post('ajax/professorRepository_findOnly.php', {"id":id},function(error, data){
+		var data = JSON.parse(data);
+		formEditarProfessor.elements['nome'].value =  data.pro_nome;
+		formEditarProfessor.elements['sobrenome'].value = data.pro_sobrenome;
+		formEditarProfessor.elements['email'].value =  data.usu_email;
+		formEditarProfessor.elements['senha'].value =  null;
+		showEdit();
+	});
+}
 function deleteAluno(id, ativo){
 	var paramAction = (ativo == 0)?1:0;
 	var eHTTP = new easyHTTP();

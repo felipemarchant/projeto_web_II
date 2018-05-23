@@ -99,7 +99,7 @@ $materiaList = $materia->getCollection(
 							<div class="input-group mb-2 mr-sm-1">
 								<input type="password" name="senha" class="form-control"  placeholder="Senha" required>
 							</div>
-							<input type="button" onclick="hideEdit()" class="btn btn-danger mb-2 mr-sm-1" value="Cancelar" />
+							<input type="button" onclick="hideEdit()" class="btn btn-warning mb-2 mr-sm-1" value="Cancelar" />
 							<input type="submit" class="btn btn-success mb-2 mr-sm-1" value="Cadastrar" />
 						</div>
 					</form>	

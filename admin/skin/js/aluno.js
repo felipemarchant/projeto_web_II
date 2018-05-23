@@ -46,6 +46,10 @@ window.onload = function(){
 
 };
 function hideEdit(){
+	document.getElementById('alunoForm_edit_all').style.display = 'none';
+	document.getElementById('alunoForm_add_all').style.display = 'block';
+}
+function showEdit(){
 	document.getElementById('alunoForm_edit_all').style.display = 'block';
 	document.getElementById('alunoForm_add_all').style.display = 'none';
 }

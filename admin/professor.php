@@ -113,16 +113,6 @@ $professorList = $professor->getCollection(
 							<div class="input-group mb-2 mr-sm-1">
 								<input type="password" name="senha" class="form-control"  placeholder="Senha" required>
 							</div>
-							<div class="input-group mb-2 mr-sm-1">
-								<div class="input-group-prepend">
-									<label class="input-group-text" for="materia">Materia</label>
-								</div>
-								<select class="custom-select" disabled name="materia">
-									<?php foreach ($materiaList as $materia): ?>
-										<option value="<?php echo $materia->mat_id; ?>"><?php echo $materia->mat_nome; ?></option>
-									<?php endforeach;?>
-								</select>
-							</div>
 							<input type="button" onclick="hideEdit()" class="btn btn-warning mb-2 mr-sm-1 float-left" value="Cancelar" />
 							<input type="submit" class="btn btn-primary mb-2 mr-sm-1 float-right" value="Editar" />
 						</div>
@@ -174,7 +164,7 @@ $professorList = $professor->getCollection(
 									<?php if($professor->pro_ativo == 0):?>
 										<td><div class="action"><button class="btn btn-primary btn-small">Editar</button> | <button onclick="deleteProfessor(<?php echo $professor->pro_id; ?>,<?php echo $professor->pro_ativo; ?>)" class="btn btn-success btn-small">Ativar</button></div></td>
 										<?php else:?>
-											<td><div class="action"><button class="btn btn-primary btn-small">Editar</button> | <button onclick="deleteProfessor(<?php echo $professor->pro_id; ?>,<?php echo $professor->pro_ativo; ?>)" class="btn btn-danger btn-small">Desativar</button></div></td>
+											<td><div class="action"><button onclick="editProfessor(<?php echo $professor->pro_id; ?>)" class="btn btn-primary btn-small">Editar</button> | <button onclick="deleteProfessor(<?php echo $professor->pro_id; ?>,<?php echo $professor->pro_ativo; ?>)" class="btn btn-danger btn-small">Desativar</button></div></td>
 										<?php endif; ?>
 									</tr>
 								<?php endforeach; ?>

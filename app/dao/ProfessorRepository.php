@@ -62,7 +62,9 @@ class ProfessorRepository extends DAO
 	{
 		$result = null;
 
-		$sql  =  "SELECT * FROM professores WHERE pro_id = '$id' AND pro_ativo = 1";
+		$sql  =  "SELECT * FROM professores ";
+		$sql .=  "INNER JOIN usuarios ON usuarios.usu_usu_id = professores.pro_id ";
+		$sql .=  "WHERE pro_id = '$id' AND pro_ativo = 1 AND usu_nivel = 2;";
 		$sth  = $this->conn->prepare($sql);
 		$sth->execute();
 		$result = $sth->fetch($this->fetch_type);
