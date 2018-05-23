@@ -1,12 +1,12 @@
 <?php
 require 'templates/admin_inc.php';
-
+$noProf = true;
 $materia = new MateriaRepository();
 $materiaList = $materia->getCollection(
 	[
 		'mat_id',
 		'mat_nome'
-	]
+	],$noProf
 );
 $professor = new ProfessorRepository();
 $professorList = $professor->getCollection(
@@ -41,47 +41,94 @@ $professorList = $professor->getCollection(
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 col-addUser-all">
-				<h1 class="lead text-title text-center">Adicionar Professor</h1>
-				<form class="" method="POST" action="">
-					<div class="col-sm-10 offset-sm-1 form-inline">
-						<label class="mr-2" for="nome">Nome</label>
-						<div class="input-group mb-2 mr-sm-2">
-							<input type="text" name="nome" class="form-control" id="nome" placeholder="Nome" required>
-						</div>
-
-						<label class="mr-2" for="sobrenome">Sobrenome</label>
-						<div class="input-group mb-2 mr-sm-2">
-							<input type="text" name="sobrenome" class="form-control" id="sobrenome" placeholder="Sobrenome" required>
-						</div>
-						<label class="mr-2" for="email">E-Mail</label>
-						<div class="input-group mb-2 mr-sm-2">
-							<input type="email" name="email" class="form-control" id="email" placeholder="E-Mail" required>
-						</div>
-
-					</div>
-					<div class="col-sm-10 offset-sm-1 form-inline">
-						<label class="mr-2" for="nome" style="padding-right: 24px;">RA</label>
-						<div class="input-group mb-2 mr-sm-2">
-							<input type="text" name="ra" class="form-control" id="ra" placeholder="RA" required>
-						</div>
-
-						<label class="mr-2" for="sobrenome">Senha</label>
-						<div class="input-group mb-2 mr-sm-1">
-							<input type="text" name="senha" class="form-control" id="senha" placeholder="Senha" required>
-						</div>
-						<div class="input-group mb-2 mr-sm-1">
-							<div class="input-group-prepend">
-								<label class="input-group-text" for="materia">Materia</label>
+				<div id="formProfessor_add_all">
+					<h1 class="lead text-title text-center">Adicionar Professor</h1>
+					<form id="formProfessor_add" class="" method="POST" action="">
+						<div class="col-sm-10 offset-sm-1 form-inline">
+							<label class="mr-2" for="nome">Nome</label>
+							<div class="input-group mb-2 mr-sm-2">
+								<input type="text" name="nome" class="form-control"  placeholder="Nome" required>
 							</div>
-							<select class="custom-select" id="materia">
-								<?php foreach ($materiaList as $materia): ?>
-									<option value="<?php echo $materia->mat_id; ?>"><?php echo $materia->mat_nome; ?></option>
-								<?php endforeach;?>
-							</select>
+
+							<label class="mr-2" for="sobrenome">Sobrenome</label>
+							<div class="input-group mb-2 mr-sm-2">
+								<input type="text" name="sobrenome" class="form-control"  placeholder="Sobrenome" required>
+							</div>
+							<label class="mr-2" for="email">E-Mail</label>
+							<div class="input-group mb-2 mr-sm-2">
+								<input type="email" name="email" class="form-control"  placeholder="E-Mail" required>
+							</div>
+
 						</div>
-						<input type="submit" class="btn btn-success mb-2 mr-sm-1" value="Cadastrar" />
-					</div>
-				</form>	
+						<div class="col-sm-10 offset-sm-1 form-inline">
+							<label class="mr-2" for="nome" style="padding-right: 24px;">RA</label>
+							<div class="input-group mb-2 mr-sm-2">
+								<input type="number" name="ra" max="99999999" oninvalid="setCustomValidity('Entre com um RA de 8 Digitos')" lass="form-control"  placeholder="RA" required>
+							</div>
+
+							<label class="mr-2" for="sobrenome">Senha</label>
+							<div class="input-group mb-2 mr-sm-1">
+								<input type="password" name="senha" class="form-control"  placeholder="Senha" required>
+							</div>
+							<div class="input-group mb-2 mr-sm-1">
+								<div class="input-group-prepend">
+									<label class="input-group-text" for="materia">Materia</label>
+								</div>
+								<select class="custom-select" name="materia">
+									<?php foreach ($materiaList as $materia): ?>
+										<option value="<?php echo $materia->mat_id; ?>"><?php echo $materia->mat_nome; ?></option>
+									<?php endforeach;?>
+								</select>
+							</div>
+							<input type="submit" class="btn btn-success mb-2 mr-sm-1" value="Cadastrar" />
+						</div>
+					</form>	
+				</div>
+				<div id="formProfessor_edit_all">
+					<h1 class="lead text-title text-center">Editar Professor</h1>
+					<form id="formProfessor_edit" class="" method="POST" action="">
+						<div class="col-sm-10 offset-sm-1 form-inline">
+							<label class="mr-2" for="nome">Nome</label>
+							<div class="input-group mb-2 mr-sm-2">
+								<input type="text" name="nome" class="form-control"  placeholder="Nome" required>
+							</div>
+
+							<label class="mr-2" for="sobrenome">Sobrenome</label>
+							<div class="input-group mb-2 mr-sm-2">
+								<input type="text" name="sobrenome" class="form-control"  placeholder="Sobrenome" required>
+							</div>
+							<label class="mr-2" for="email">E-Mail</label>
+							<div class="input-group mb-2 mr-sm-2">
+								<input type="email" name="email" class="form-control"  placeholder="E-Mail" required>
+							</div>
+
+						</div>
+						<div class="col-sm-10 offset-sm-1 form-inline">
+							<label class="mr-2" for="nome" style="padding-right: 24px;">RA</label>
+							<div class="input-group mb-2 mr-sm-2">
+								<input type="number" name="ra" max="99999999" oninvalid="setCustomValidity('Entre com um RA de 8 Digitos')" lass="form-control"  placeholder="RA" required>
+							</div>
+
+							<label class="mr-2" for="sobrenome">Senha</label>
+							<div class="input-group mb-2 mr-sm-1">
+								<input type="password" name="senha" class="form-control"  placeholder="Senha" required>
+							</div>
+							<div class="input-group mb-2 mr-sm-1">
+								<div class="input-group-prepend">
+									<label class="input-group-text" for="materia">Materia</label>
+								</div>
+								<select class="custom-select" disabled name="materia">
+									<?php foreach ($materiaList as $materia): ?>
+										<option value="<?php echo $materia->mat_id; ?>"><?php echo $materia->mat_nome; ?></option>
+									<?php endforeach;?>
+								</select>
+							</div>
+							<input type="submit" class="btn btn-warning mb-2 mr-sm-1 float-left" value="Cancelar" />
+							<input type="submit" class="btn btn-primary mb-2 mr-sm-1 float-right" value="Editar" />
+						</div>
+					</form>	
+				</div>
+
 			</div>
 		</div>
 		<div class="row col-searchUser-all">

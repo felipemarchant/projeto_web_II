@@ -14,7 +14,16 @@ class MateriaRepository extends DAO
 		$cCount = $this->conn->query($sql)->fetchColumn();
 		return $cCount;
 	}
-	public function getCollection($fields = array())
+	public function setProfessor($idProf, $idMat){
+		$idProf = (int) $idProf;
+		$idMat= (int) $idMat;
+		$sql = "UPDATE materias SET pro_id = :pro_id WHERE mat_id = :mat_id";
+		$sth = $this->conn->prepare($sql);
+		$sth->bindParam(':pro_id', $idProf, PDO::PARAM_INT);
+		$sth->bindParam(':mat_id', $idMat, PDO::PARAM_INT);
+		$sth->execute(); 
+	}
+	public function getCollection($fields = array(), $noProf = false)
 	{
 		if(empty($fields)){
 			$fields = '*';
@@ -23,7 +32,10 @@ class MateriaRepository extends DAO
 		}
 		$result = null;
 
-		$sql =  "SELECT $fields FROM materias ORDER BY mat_nome";
+		$sql =  "SELECT $fields FROM materias";
+		if($noProf){
+			$sql .=" WHERE pro_id IS NULL ORDER BY mat_nome;";
+		}
 		$sth = $this->conn->prepare($sql);
 		$sth->execute();
 		$result = $sth->fetchAll($this->fetch_type);

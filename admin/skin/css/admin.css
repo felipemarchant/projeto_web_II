@@ -46,3 +46,9 @@
 #admin_professor_index td {
 	cursor: pointer;
 }
+#formProfessor_add_all {
+	
+}
+#formProfessor_edit_all {
+	display: none;
+}
