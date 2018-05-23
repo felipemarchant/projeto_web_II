@@ -102,6 +102,14 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		document.getElementById('log').addEventListener('click', function(e){
+			if(!confirm('Deseja realmente sair?')){
+				e.preventDefault();
+			}
+		});
+		
+	</script>
 	<?php require 'templates/footer.php' ?>
 </body>
 </html>
