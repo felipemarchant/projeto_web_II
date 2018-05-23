@@ -63,7 +63,7 @@
 					<div class="card-header">Sair</div>
 					<div class="card-body">
 						<p class="card-text">Deseja Sair?</p>
-						<a class="btn btn-secondary btn-sm" href="logout.php">Sair</a>
+						<a class="btn btn-secondary btn-sm" id="log" href="logout.php">Sair</a>
 					</div>
 				</div>
 				<!-- Card 1 -->

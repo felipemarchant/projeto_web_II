@@ -10,6 +10,7 @@ if(true){
 	if(!in_array('', $_POST)){
 		$aluno = $_POST['aluno'];
 		$usuario   = $_POST['usuario'];
+		$mats = $aluno['materia'];
 		if(verificaRA($usuario['ra'])){
 			$newRa = geraRA();
 			echo json_encode(array(
@@ -18,8 +19,11 @@ if(true){
 			));
 		}else{		
 			$aluRepo = new AlunoRepository;
+			$matRepo = new MateriaRepository;
 			$id = $aluRepo->add($aluno);
 			$aluRepo->addUser($id, $usuario);
+			$matRepo->addBingMaterias($id, $mats);
+
 			echo json_encode(array());
 		}
 	}

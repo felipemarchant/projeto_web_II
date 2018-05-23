@@ -23,6 +23,12 @@ window.onload = function(){
 			nome:this.elements["nome"].value,
 			sobrenome:this.elements["sobrenome"].value,
 		};
+		var arr = [];
+		getSelectedOptions(this.elements["materia"]).forEach(function(o){
+			arr.push(o.value);
+		});
+		dados.aluno.materia = arr;
+
 		var self = this;
 		eHTTP = new easyHTTP();
 		eHTTP.post('ajax/alunoRepository_add.php', dados, function(err, data){
@@ -40,6 +46,19 @@ window.onload = function(){
 
 };
 function hideEdit(){
-	document.getElementById('formAluno_edit_all').style.display = 'none';
-	document.getElementById('formAluno_add_all').style.display = 'block';
+	document.getElementById('alunoForm_edit_all').style.display = 'block';
+	document.getElementById('alunoForm_add_all').style.display = 'none';
+}
+function getSelectedOptions(sel, fn) {
+    var opts = [], opt;
+    for (var i=0, len=sel.options.length; i<len; i++) {
+        opt = sel.options[i];
+        if ( opt.selected ) {
+            opts.push(opt);
+            if (fn) {
+                fn(opt);
+            }
+        }
+    }
+    return opts;
 }

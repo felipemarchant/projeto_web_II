@@ -14,6 +14,20 @@ class MateriaRepository extends DAO
 		$cCount = $this->conn->query($sql)->fetchColumn();
 		return $cCount;
 	}
+	public function addBingMaterias($id,$mats)
+	{
+		$id = (int)$id;
+		$sql = '';
+		foreach ($mats as $mat) {
+			$sql = '';
+			$sql = "INSERT INTO alunos_materias(alu_id, mat_id) VALUES (:id,:mat)";
+			$sth = $this->conn->prepare($sql);
+			$sth->bindParam(':id', $id, PDO::PARAM_INT);
+			$sth->bindParam(':mat', $mat, PDO::PARAM_INT);
+			$sth->execute();
+
+		}
+	}
 	public function setProfessor($idProf, $idMat){
 		$idProf = (int) $idProf;
 		$idMat= (int) $idMat;

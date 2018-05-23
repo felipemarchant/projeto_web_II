@@ -8,7 +8,7 @@ $materiaList = $materia->getCollection(
 	[
 		'mat_id',
 		'mat_nome'
-	],$noProf
+	]
 );
 	//header("location:login.php");
 ?>
@@ -61,6 +61,11 @@ $materiaList = $materia->getCollection(
 							<div class="input-group mb-2 mr-sm-1">
 								<input type="password" name="senha" class="form-control"  placeholder="Senha" required>
 							</div>
+							<select multiple  class="custom-select" name="materia">
+									<?php foreach ($materiaList as $materia): ?>
+										<option value="<?php echo $materia->mat_id; ?>"><?php echo $materia->mat_nome; ?></option>
+									<?php endforeach;?>
+								</select>
 							<input type="submit" class="btn btn-success mb-2 mr-sm-1" value="Cadastrar" />
 						</div>
 					</form>	
