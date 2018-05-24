@@ -46,6 +46,7 @@ function editAluno(id){
 		formEditarAluno.elements['email'].value =  data.usu_email;
 		formEditarAluno.elements['ra'].value =  data.usu_ra;
 		formEditarAluno.elements['senha'].value =  null;
+		formEditarAluno.elements['_id'].value =  data.alu_id;
 		showEdit();
 	});
 }

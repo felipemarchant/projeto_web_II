@@ -1,7 +1,8 @@
 <?php
 require "../templates/inc.php";
+$idMat = 1;
 $alunoRepo = new AlunoRepository;
-$alunoList = $alunoRepo->getCollection(['alunos.alu_id','usuarios.usu_ra','usuarios.usu_nome'], null, true);
+$alunoList = $alunoRepo->getCollectionByMateria($idMat);
 	//header("location:login.php");
 ?>
 <!DOCTYPE html>
@@ -21,50 +22,46 @@ $alunoList = $alunoRepo->getCollection(['alunos.alu_id','usuarios.usu_ra','usuar
 	<br>
 	<div class="container">
 		<h1 class="lead text-title text-center">Computação Básica</h1>
-		<div class="row">
+		<div class="row" id="area_aluno">
 			<div class="col-sm-6">
 				<div class="row">
 					<div class="col-sm">
 						<p class="">Nome:</p>
+						<p id="aluno_nome"></p>
 					</div>
 					<div class="col-sm">
 						<p class="">Sobrenome:</p>
+						<p id="aluno_sobrenome"></p>
 					</div>
 					<div class="col-sm">
 						<p class="">RA:</p>
+						<p id="aluno_ra"></p>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm">
 						<p class="">E-Mail:</p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="form-group row">
-						<div class="col-sm-10">
-							<label for="b1" class="col-sm-2 col-form-label">B1</label>
-							<input type="password" class="form-control" id="b1" placeholder="Nota B1">
-						</div>
-					</div>
-					<div class="form-group row">
-						<div class="col-sm-10">
-							<label for="b2" class="col-sm-2 col-form-label">B2</label>
-							<input type="password" class="form-control" id="b2" placeholder="Nota B2">
-						</div>
+						<p id="aluno_email"></p>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group row">
 						<div class="col-sm-6">
-							<p class="text-center">DATA: 17/08/2018</p>
+							<p class="text-center"><?php echo date('d/m/Y'); ?></p>
 						</div>
 						<div class="col-sm-6">
 							<div class="btn-group" role="group" aria-label="Basic example">
-								<button type="button" class="btn btn-success active">Presente</button>
-								<button type="button" class="btn btn-danger">Ausente</button>
+								<select id="select_presente" name="presenca" class="form-control">
+									<option value="1">Presente</option>
+									<option value="0">Ausente</option>
+								</select>
 							</div>
 						</div>
 					</div>
+					<input type="hidden" value="<?php echo $idMat; ?>" id="_id_mat"  />
+					<input type="hidden" value="<?php echo date('Y-m-d H:i:s'); ?>" id="_dataAtual"  />
+					<input type="hidden" value="" id="_id_alu"  />
+					<input type="button" onclick="insertAluPresencaNota()" value="Enviar" class="ml-5 btn btn-primary" />
 				</div>
 				<hr/>
 				<br/>
@@ -79,11 +76,10 @@ $alunoList = $alunoRepo->getCollection(['alunos.alu_id','usuarios.usu_ra','usuar
 										<th></th>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody id="tbody_presenca">
 									<tr>
-										<td><?php echo date('d/m/Y') ?></td>
+										<td></td>
 										<td><div class="btn-group" role="group" aria-label="">
-											<button type="button" class="btn btn-success active">Presente</button>
 										</div></td>
 									</tr>
 								</tbody>
@@ -103,21 +99,20 @@ $alunoList = $alunoRepo->getCollection(['alunos.alu_id','usuarios.usu_ra','usuar
 					<table class="table table-striped table-bordered table-fixed">
 						<thead>
 							<tr>
-								<th>RA</th>
+								<th></th>
 								<th>Nome</th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php foreach($alunoList as $aluno): ?>
 								<tr>
-									<td onclick="findOnly(<?php echo $aluno->alu_id; ?>)"><?php echo $aluno->usu_ra; ?></td>
-									<td><?php echo $aluno->alu_nome; ?></td>
+									<td colspan="2" onclick="findOnly(<?php echo $aluno->alu_id; ?>)"><?php echo $aluno->alu_nome ." "; ?><?php echo $aluno->alu_sobrenome; ?></td>
 								</tr>
 							<?php endforeach; ?>
 						</tbody>
 						<tfoot>
 							<tr>
-								<th>RA</th>
+								<th></th>
 								<th>Nome</th>
 							</tr>
 						</tfoot>

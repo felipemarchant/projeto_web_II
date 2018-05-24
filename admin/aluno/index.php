@@ -3,7 +3,7 @@
 require '../templates/inc.php';
 
 $alunoRepo = new AlunoRepository;
-$materiasLista = $alunoRepo->getMateriasCollection(9,
+$materiasLista = $alunoRepo->getMateriasCollection(2,
 	[
 		'alunos_materias.mat_id',
 		'alunos_materias.alu_id',

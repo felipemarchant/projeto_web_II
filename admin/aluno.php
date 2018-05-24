@@ -73,6 +73,7 @@ $materiaList = $materia->getCollection(
 				<div id="alunoForm_edit_all">
 					<h1 class="lead text-title text-center">Editar Aluno</h1>
 					<form id="formAluno_edit" method="POST" action="">
+						<input type="hidden" name="_id" value="">
 						<div class="col-sm-10 offset-sm-1 form-inline">
 							<label class="mr-2" for="nome">Nome</label>
 							<div class="input-group mb-2 mr-sm-2">
@@ -100,7 +101,7 @@ $materiaList = $materia->getCollection(
 								<input type="password" name="senha" class="form-control"  placeholder="Senha" required>
 							</div>
 							<input type="button" onclick="hideEdit()" class="btn btn-warning mb-2 mr-sm-1" value="Cancelar" />
-							<input type="submit" class="btn btn-success mb-2 mr-sm-1" value="Cadastrar" />
+							<input type="submit" class="btn btn-success mb-2 mr-sm-1" value="Editar" />
 						</div>
 					</form>	
 				</div>

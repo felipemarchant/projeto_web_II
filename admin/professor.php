@@ -87,6 +87,7 @@ $professorList = $professor->getCollection(
 				<div id="formProfessor_edit_all">
 					<h1 class="lead text-title text-center">Editar Professor</h1>
 					<form id="formProfessor_edit" class="" method="POST" action="">
+						<input type="hidden" name="_id" value="">
 						<div class="col-sm-10 offset-sm-1 form-inline">
 							<label class="mr-2" for="nome">Nome</label>
 							<div class="input-group mb-2 mr-sm-2">

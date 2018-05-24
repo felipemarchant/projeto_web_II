@@ -44,6 +44,30 @@ window.onload = function(){
 		return false;
 	});
 
+	var formEditAluno = document.getElementById('formAluno_edit');
+	formEditAluno.addEventListener("submit", function(e){
+		e.preventDefault();
+		var dados = {};
+
+		dados.aluno = {};
+		dados.aluno.id = this.elements['_id'].value;
+		dados.aluno.nome = this.elements["nome"].value;
+		dados.aluno.sobrenome = this.elements["sobrenome"].value;
+
+		dados.usuario = {};
+		dados.usuario.email = this.elements["email"].value;
+		dados.usuario.senha = this.elements["senha"].value;
+		dados.usuario.ra = this.elements["ra"].value;
+
+		var self = this;
+		eHTTP = new easyHTTP();
+		eHTTP.post('ajax/alunoRepository_edit.php', dados, function(err, data){
+				alert('Aluno editado com Sucesso!');
+				location.reload();
+		});
+		return false;
+	});
+
 };
 function hideEdit(){
 	document.getElementById('alunoForm_edit_all').style.display = 'none';

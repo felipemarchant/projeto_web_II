@@ -8,13 +8,13 @@ if ($headers["Content-type"] == "application/json"){
 header('Content-Type: application/json');
 if(true){
 	if(!in_array('', $_POST)){
-		$id = $_POST['professor']['id'];
-		$dadosProfessor = $_POST['professor'];
+		$id = $_POST['aluno']['id'];
+		$dadosAluno = $_POST['aluno'];
 		$dadosUsuario 	= $_POST['usuario'];
 
-		$proRepo = new ProfessorRepository;
-		$proRepo->editProfessor($id, $dadosProfessor);
-		$proRepo->editUser($id, $dadosUsuario);
+		$aluRepo = new AlunoRepository;
+		$aluRepo->editAluno($id, $dadosAluno);
+		$aluRepo->editUser($id, $dadosUsuario);
 		echo json_encode(array());
 	}
 }else{

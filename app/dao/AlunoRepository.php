@@ -14,6 +14,34 @@ class AlunoRepository extends DAO
 		$cCount = $this->conn->query($sql)->fetchColumn();
 		return $cCount;
 	}
+	public function editAluno($id, $dados)
+	{
+		$sql  = "UPDATE alunos SET ";
+		$sql .= "alu_nome = :nome, ";
+		$sql .= "alu_sobrenome = :sobrenome ";
+		$sql .= "WHERE alu_id = :id ;";
+		$sth = $this->conn->prepare($sql);
+		$sth->bindParam(':nome', $dados['nome'], PDO::PARAM_STR);
+		$sth->bindParam(':sobrenome', $dados['sobrenome'], PDO::PARAM_STR);
+		$sth->bindParam(':id', $id, PDO::PARAM_INT);
+		$sth->execute(); 
+	}
+	public function editUser($id, $dados)
+	{
+		$senha = sha1($dados['senha']);
+		$sql  = "UPDATE usuarios SET ";
+		$sql .= "usu_ra = :ra, ";
+		$sql .= "usu_email = :email, ";
+		$sql .= "usu_senha = :senha ";
+		$sql .= "WHERE usu_usu_id = :id AND usu_nivel = 2 ;";
+
+		$sth = $this->conn->prepare($sql);
+		$sth->bindParam(':ra', $dados['ra'], PDO::PARAM_STR);
+		$sth->bindParam(':email', $dados['email'], PDO::PARAM_STR);
+		$sth->bindParam(':senha', $senha, PDO::PARAM_STR);
+		$sth->bindParam(':id', $id, PDO::PARAM_INT);
+		$sth->execute(); 
+	}
 	public function add($aluno)
 	{
 		$ativo = 1;
@@ -51,6 +79,22 @@ class AlunoRepository extends DAO
 		$sth->bindParam(':action', $action, PDO::PARAM_INT);
 		$sth->bindParam(':id', $id, PDO::PARAM_INT);
 		$sth->execute(); 
+	}
+	public function getCollectionByMateria($matId){
+		$result = null;
+
+		$sql  = "SELECT * FROM alunos ";
+		$sql .= "INNER JOIN alunos_materias ON alunos.alu_id =  alunos_materias.alu_id ";
+		$sql .= "INNER JOIN materias ON alunos_materias.mat_id = materias.mat_id ";
+		$sql .= "WHERE alunos_materias.mat_id = $matId";
+
+		$sql .= " ;";
+		$sth = $this->conn->prepare($sql);
+		$sth->execute();
+		$result = $sth->fetchAll($this->fetch_type);
+
+		return $result;
+
 	}
 	public function getCollection($fields = array(), $criteria = null, $desativados = false)
 	{

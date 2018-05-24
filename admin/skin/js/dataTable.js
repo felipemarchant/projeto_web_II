@@ -37,7 +37,6 @@ dataTable = {
 	}
 
 };
-
 function editProfessor(id){
 	var formEditarProfessor = document.getElementById('formProfessor_edit');
 	var eHTTP = new easyHTTP();
@@ -49,6 +48,7 @@ function editProfessor(id){
 		formEditarProfessor.elements['email'].value =  data.usu_email;
 		formEditarProfessor.elements['ra'].value =  data.usu_ra;
 		formEditarProfessor.elements['senha'].value =  null;
+		formEditarProfessor.elements['_id'].value =  data.pro_id;
 		showEdit();
 	});
 }

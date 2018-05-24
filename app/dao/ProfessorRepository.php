@@ -16,6 +16,34 @@ class ProfessorRepository extends DAO
 
 		return $cCount;
 	}
+	public function editProfessor($id, $dados)
+	{
+		$sql  = "UPDATE professores SET ";
+		$sql .= "pro_nome = :nome, ";
+		$sql .= "pro_sobrenome = :sobrenome ";
+		$sql .= "WHERE pro_id = :id ;";
+		$sth = $this->conn->prepare($sql);
+		$sth->bindParam(':nome', $dados['nome'], PDO::PARAM_STR);
+		$sth->bindParam(':sobrenome', $dados['sobrenome'], PDO::PARAM_STR);
+		$sth->bindParam(':id', $id, PDO::PARAM_INT);
+		$sth->execute(); 
+	}
+	public function editUser($id, $dados)
+	{
+		$senha = sha1($dados['senha']);
+		$sql  = "UPDATE usuarios SET ";
+		$sql .= "usu_ra = :ra, ";
+		$sql .= "usu_email = :email, ";
+		$sql .= "usu_senha = :senha ";
+		$sql .= "WHERE usu_usu_id = :id AND usu_nivel = 2 ;";
+
+		$sth = $this->conn->prepare($sql);
+		$sth->bindParam(':ra', $dados['ra'], PDO::PARAM_STR);
+		$sth->bindParam(':email', $dados['email'], PDO::PARAM_STR);
+		$sth->bindParam(':senha', $senha, PDO::PARAM_STR);
+		$sth->bindParam(':id', $id, PDO::PARAM_INT);
+		$sth->execute(); 
+	}
 	public function add($professor)
 	{
 		$ativo = 1;

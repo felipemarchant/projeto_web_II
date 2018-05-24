@@ -37,6 +37,30 @@ window.onload = function(){
 		});
 		return false;
 	});
+
+	var formEditProfessor = document.getElementById('formProfessor_edit');
+	formEditProfessor.addEventListener("submit", function(e){
+		e.preventDefault();
+		var dados = {};
+
+		dados.professor = {};
+		dados.professor.id = this.elements['_id'].value;
+		dados.professor.nome = this.elements["nome"].value;
+		dados.professor.sobrenome = this.elements["sobrenome"].value;
+
+		dados.usuario = {};
+		dados.usuario.email = this.elements["email"].value;
+		dados.usuario.senha = this.elements["senha"].value;
+		dados.usuario.ra = this.elements["ra"].value;
+
+		var self = this;
+		eHTTP = new easyHTTP();
+		eHTTP.post('ajax/professorRepository_edit.php', dados, function(err, data){
+				alert('Professor editado com Sucesso!');
+				location.reload();
+		});
+		return false;
+	});
 };
 function hideEdit(){
 	document.getElementById('formProfessor_edit_all').style.display = 'none';
