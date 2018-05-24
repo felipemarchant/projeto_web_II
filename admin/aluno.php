@@ -72,7 +72,7 @@ $materiaList = $materia->getCollection(
 				</div>
 				<div id="alunoForm_edit_all">
 					<h1 class="lead text-title text-center">Editar Aluno</h1>
-					<form class="" method="POST" action="">
+					<form id="formAluno_edit" method="POST" action="">
 						<div class="col-sm-10 offset-sm-1 form-inline">
 							<label class="mr-2" for="nome">Nome</label>
 							<div class="input-group mb-2 mr-sm-2">
@@ -149,7 +149,7 @@ $materiaList = $materia->getCollection(
 									<td><?php echo $aluno->alu_nome." ".$aluno->alu_sobrenome; ?></td>
 									<td><?php echo $aluno->usu_email; ?></td>
 									<td class="frequencia"><p class="frequencia bg-success text-light"><?php echo $presencas; ?></p> | <p class="falta bg-warning"><?php echo $faltas;?></p></td>
-									<td><div class="action"><button class="btn btn-primary btn-small">Editar</button> | 
+									<td><div class="action"><button onclick="editAluno(<?php echo  $aluno->alu_id; ?>)"class="btn btn-primary btn-small">Editar</button> | 
 
 										<?php if($aluno->alu_ativo == 0):?>
 											<button ativo="<?php echo $aluno->alu_ativo; ?>" id="<?php echo $aluno->alu_id ?>" onclick="deleteAluno(<?php echo $aluno->alu_id; ?>,<?php echo $aluno->alu_ativo; ?>)" class="btn btn-success btn-small">Ativar</button></div></td>

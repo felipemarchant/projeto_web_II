@@ -28,23 +28,24 @@ dataTable = {
 				html += '<td>'+ data.usu_ra +'</td>';
 				html += '<td>'+ data.alu_nome +" "+ data.alu_sobrenome +'</td>';
 				html += '<td>'+ data.usu_email +'</td>';
-				html += '<td class="frequencia"><p class="frequencia bg-success text-light">' + data.presencas + '</p> | <p class="falta bg-warning">' + data.faltas + '</p></td><td><div class="action"><button class="btn btn-primary btn-small">Editar</button> | <button onclick="deleteAluno('+data.alu_id+','+data.alu_ativo+')" ativo="'+flag+'" id="'+data.alu_id+'"class="btn ' + clasz + ' btn-small">'+textT+'</button></div></td>';
+				html += '<td class="frequencia"><p class="frequencia bg-success text-light">' + data.presencas + '</p> | <p class="falta bg-warning">' + data.faltas + '</p></td><td><div class="action"><button onclick="editAluno('+data.alu_id+')" class="btn btn-primary btn-small">Editar</button> | <button onclick="deleteAluno('+data.alu_id+','+data.alu_ativo+')" ativo="'+flag+'" id="'+data.alu_id+'"class="btn ' + clasz + ' btn-small">'+textT+'</button></div></td>';
 				html += '</tr>';
 				bodyTable.insertAdjacentHTML('beforeend',html);
 			});
 		});
 	}
 };
-function editProfessor(id){
-	var formEditarProfessor = document.getElementById('formProfessor_edit');
+function editAluno(id){
+	var formEditarAluno = document.getElementById('formAluno_edit');
 	var eHTTP = new easyHTTP();
 	id = parseInt(id);
-	eHTTP.post('ajax/professorRepository_findOnly.php', {"id":id},function(error, data){
+	eHTTP.post('ajax/alunoRepository_findOnlyToEdit.php', {"id":id},function(error, data){
 		var data = JSON.parse(data);
-		formEditarProfessor.elements['nome'].value =  data.pro_nome;
-		formEditarProfessor.elements['sobrenome'].value = data.pro_sobrenome;
-		formEditarProfessor.elements['email'].value =  data.usu_email;
-		formEditarProfessor.elements['senha'].value =  null;
+		formEditarAluno.elements['nome'].value =  data.alu_nome;
+		formEditarAluno.elements['sobrenome'].value = data.alu_sobrenome;
+		formEditarAluno.elements['email'].value =  data.usu_email;
+		formEditarAluno.elements['ra'].value =  data.usu_ra;
+		formEditarAluno.elements['senha'].value =  null;
 		showEdit();
 	});
 }

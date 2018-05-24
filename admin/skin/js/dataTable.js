@@ -47,6 +47,7 @@ function editProfessor(id){
 		formEditarProfessor.elements['nome'].value =  data.pro_nome;
 		formEditarProfessor.elements['sobrenome'].value = data.pro_sobrenome;
 		formEditarProfessor.elements['email'].value =  data.usu_email;
+		formEditarProfessor.elements['ra'].value =  data.usu_ra;
 		formEditarProfessor.elements['senha'].value =  null;
 		showEdit();
 	});

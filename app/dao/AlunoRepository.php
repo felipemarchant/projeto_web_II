@@ -85,7 +85,9 @@ class AlunoRepository extends DAO
 	{
 		$result = null;
 
-		$sql  =  "SELECT * FROM alunos WHERE alu_id = '$id' AND alu_ativo = 1";
+		$sql  =  "SELECT * FROM alunos ";
+		$sql .=  "INNER JOIN usuarios ON usuarios.usu_usu_id = alunos.alu_id ";
+		$sql .=  "WHERE alu_id = '$id' AND alu_ativo = 1 AND usu_nivel = 3";
 		$sth  = $this->conn->prepare($sql);
 		$sth->execute();
 		$result = $sth->fetch($this->fetch_type);
