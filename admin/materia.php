@@ -1,4 +1,14 @@
 <?php
+session_start();
+if(!isset($_SESSION)){
+	header('Location: logout.php');
+}
+$dadosUsu = $_SESSION['dadosUsu'];
+$dados = $_SESSION['dados'];
+$nivel = (int)$dadosUsu->usu_nivel;
+if($nivel != 1){
+	header('Location: logout.php');
+}
 
 	//header("location:login.php");
 require '../app/core/DB.php';

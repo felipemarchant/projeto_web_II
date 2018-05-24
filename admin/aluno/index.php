@@ -1,9 +1,18 @@
 <?php 
-
+session_start();
+if(!isset($_SESSION)){
+	header('Location: ../logout.php');
+}
+$dadosUsu = $_SESSION['dadosUsu'];
+$dados = $_SESSION['dados'];
+$nivel = (int)$dadosUsu->usu_nivel;
+if($nivel != 3){
+	header('Location: ../logout.php');
+}
 require '../templates/inc.php';
 
 $alunoRepo = new AlunoRepository;
-$materiasLista = $alunoRepo->getMateriasCollection(2,
+$materiasLista = $alunoRepo->getMateriasCollection($dados->alu_id,
 	[
 		'alunos_materias.mat_id',
 		'alunos_materias.alu_id',
@@ -29,6 +38,7 @@ $materiasLista = $alunoRepo->getMateriasCollection(2,
 	<?php require '../templates/header.php' ?>
 	<br>
 	<div class="container">
+		<a href="../logout.php" class="btn btn-primary"> Sair </a>
 		<h4 class="text-center">Matérias</h4>
 		<div class="row">
 			<div class="col-sm dataTable-all">
@@ -51,42 +61,43 @@ $materiasLista = $alunoRepo->getMateriasCollection(2,
 								$proRepo = new ProfessorRepository;
 								$prof = $proRepo->findOnly($materia->pro_id);
 
-								$b1 = (float) $materia->not_b1;
-								$b2 = (float) $materia->not_b2;
-								$media = (float) ($b1 + $b2)/2;
-
 								$presenca = $alunoRepo->getPresencas($materia->alu_id, $materia->mat_id);
 								$faltas = $alunoRepo->getFaltas($materia->alu_id, $materia->mat_id);
 
 								?>
+
 								<tr>
 									<td><?php echo $materia->mat_nome; ?></td>
+								<?php if(isset($prof->pro_nome) || isset($prof->pro_sobrenome)): ?>
 									<td><?php echo $prof->pro_nome . " " . $prof->pro_sobrenome; ?></td>
-									<td><?php echo $b1; ?></td>
-									<td><?php echo $b2; ?></td>
-									<td><?php echo $media; ?></td>
-									<td><p class="frequencia bg-success text-light"><?php echo $presenca; ?></p> | <p class="falta bg-warning"><?php echo $faltas; ?></p></td>
-								</tr>
-							<?php endforeach; ?>
-
-						</tbody>
-
-						<tfoot>
-							<tr>
-								<th>Matéria</th>
-								<th>Professor</th>
-								<th>B1</th>
-								<th>B2</th>
-								<th>Média</th>
-								<th>Frequência</th>
+								<?php else: ?>
+									<td></td>
+								<?php endif; ?>
+								<td><?php echo 0; ?></td>
+								<td><?php echo 0; ?></td>
+								<td><?php echo 0; ?></td>
+								<td><p class="frequencia bg-success text-light"><?php echo $presenca; ?></p> | <p class="falta bg-warning"><?php echo $faltas; ?></p></td>
 							</tr>
-						</tfoot>
-					</table>
-				</div>
-			</div>
+						<?php endforeach; ?>
 
+					</tbody>
+
+					<tfoot>
+						<tr>
+							<th>Matéria</th>
+							<th>Professor</th>
+							<th>B1</th>
+							<th>B2</th>
+							<th>Média</th>
+							<th>Frequência</th>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
 		</div>
+
 	</div>
-	<?php require '../templates/footer.php'; ?>
+</div>
+<?php require '../templates/footer.php'; ?>
 </body>
 </html>

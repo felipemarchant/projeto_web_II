@@ -47,8 +47,8 @@
                   <h2 class="title">Site Institucional</h2>
                </a>
                <hr/>
-               <a href="admin/" class="menu-item">
-                  <h2 class="title">Já sou aluno</h2>
+               <a href="admin/login.php" class="menu-item">
+                  <h2 class="title" style="color:red;">LOGIN</h2>
                   <p class="text">A distância</p>
                </a>
                <hr/>

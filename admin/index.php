@@ -1,5 +1,14 @@
 <?php
-
+	session_start();
+	if(!isset($_SESSION)){
+		header('Location: logout.php');
+	}
+	$dadosUsu = $_SESSION['dadosUsu'];
+	$dados = $_SESSION['dados'];
+	$nivel = (int)$dadosUsu->usu_nivel;
+	if($nivel != 1){
+			header('Location: logout.php');
+	}
 	require 'templates/admin_inc.php';
 
 	$aluno = new AlunoRepository();
@@ -70,8 +79,8 @@
 				<div class="card border-dark">
 					<div class="card-header">Administrador</div>
 					<div class="card-body">
-						<p class="card-text">Nome</p>
-						<p class="card-text">E-Mail</p>
+						<p class="card-text"><?php echo $dados->adm_nome . " " ; ?> <?php echo $dados->adm_sobrenome; ?></p>
+						<p class="card-text"><?php echo $dadosUsu->usu_email; ?></p>
 					</div>
 				</div>
 				<!-- Card 1 -->
@@ -96,7 +105,7 @@
 						$ano = $date->format("Y");
 						$mes_ano = $mes." de ".$ano;
 						?>
-						<h1 class=""><?php echo $dia_sem; ?></h1> <p class="card-text"><?php echo $mes_ano; ?></p>
+						<h3 class=""><?php echo $dia_sem; ?></h3> <p class="card-text"><?php echo $mes_ano; ?></p>
 					</div>
 				</div>
 			</div>

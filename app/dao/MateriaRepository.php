@@ -46,8 +46,10 @@ class MateriaRepository extends DAO
 		}
 		$result = null;
 
-		$sql =  "SELECT $fields FROM materias";
-		if($noProf){
+		$sql =  "SELECT DISTINCT $fields FROM materias";
+		if($noProf === 2){
+			$sql .=" WHERE pro_id IS NOT NULL ORDER BY mat_nome;";	
+		}else if($noProf){
 			$sql .=" WHERE pro_id IS NULL ORDER BY mat_nome;";
 		}
 		$sth = $this->conn->prepare($sql);

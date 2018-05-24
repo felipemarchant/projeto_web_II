@@ -20,7 +20,7 @@
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title">Entrar</h4>
-							<form method="POST" action="index.php">
+							<form method="POST" action="auth.php">
 							 
 								<div class="form-group">
 									<label for="email">E-Mail</label>

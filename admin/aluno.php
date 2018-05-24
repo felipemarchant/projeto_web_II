@@ -1,14 +1,24 @@
 <?php
 require '../admin/templates/admin_inc.php';
+session_start();
+if(!isset($_SESSION)){
+	header('Location: logout.php');
+}
+$dadosUsu = $_SESSION['dadosUsu'];
+$dados = $_SESSION['dados'];
+$nivel = (int)$dadosUsu->usu_nivel;
+if($nivel != 1){
+	header('Location: logout.php');
+}
 $alunoRepo = new AlunoRepository();
 $alunoRepos = $alunoRepo->getCollection();
-$noProf = true;
+$noProf = 2;
 $materia = new MateriaRepository();
 $materiaList = $materia->getCollection(
 	[
 		'mat_id',
 		'mat_nome'
-	]
+	],$noProf 
 );
 	//header("location:login.php");
 ?>
@@ -54,14 +64,14 @@ $materiaList = $materia->getCollection(
 						<div class="col-sm-10 offset-sm-1 form-inline">
 							<label class="mr-2" for="nome" style="padding-right: 24px;">RA</label>
 							<div class="input-group mb-2 mr-sm-2">
-								<input type="number" max="99999999" oninvalid="setCustomValidity('Entre com um RA de 8 Digitos')" name="ra" class="form-control"  placeholder="RA" required>
+								<input type="number" max="99999999" name="ra" class="form-control"  placeholder="RA" required>
 							</div>
 
 							<label class="mr-2" for="sobrenome">Senha</label>
 							<div class="input-group mb-2 mr-sm-1">
 								<input type="password" name="senha" class="form-control"  placeholder="Senha" required>
 							</div>
-							<select multiple  class="custom-select" name="materia">
+							<select multiple  required class="custom-select" name="materia">
 									<?php foreach ($materiaList as $materia): ?>
 										<option value="<?php echo $materia->mat_id; ?>"><?php echo $materia->mat_nome; ?></option>
 									<?php endforeach;?>
@@ -93,7 +103,7 @@ $materiaList = $materia->getCollection(
 						<div class="col-sm-10 offset-sm-1 form-inline">
 							<label class="mr-2" for="nome" style="padding-right: 24px;">RA</label>
 							<div class="input-group mb-2 mr-sm-2">
-								<input type="number" max="99999999" oninvalid="setCustomValidity('Entre com um RA de 8 Digitos')" name="ra" class="form-control"  placeholder="RA" required>
+								<input type="number" max="99999999" name="ra" class="form-control"  placeholder="RA" required>
 							</div>
 
 							<label class="mr-2" for="sobrenome">Senha</label>
@@ -110,7 +120,7 @@ $materiaList = $materia->getCollection(
 		<div class="row col-searchUser-all">
 			<div class="col-sm-2">
 				<div class="input-group">
-					<select id="formSearch_select" class="custom-select">
+					<select id="formSearch_select" required class="custom-select">
 						<option value="ra">RA</option>
 						<option value="nome" selected>Nome</option>
 						<option value="email">E-Mail</option>

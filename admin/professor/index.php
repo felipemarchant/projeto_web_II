@@ -1,8 +1,23 @@
 <?php
+session_start();
+if(!isset($_SESSION)){
+	header('Location: ../logout.php');
+}
+$dadosUsu = $_SESSION['dadosUsu'];
+$dados = $_SESSION['dados'];
+$nivel = (int)$dadosUsu->usu_nivel;
+if($nivel != 2){
+	header('Location: ../logout.php');
+}
 require "../templates/inc.php";
-$idMat = 1;
+$profId = $dados->pro_id;
+$con = DB::getConexao();
+$sql = "SELECT mat_id FROM materias WHERE pro_id = $profId; ";
+$sth = $con->prepare($sql);
+$sth->execute();
+$idD = $sth->fetch(PDO::FETCH_OBJ)->mat_id;
 $alunoRepo = new AlunoRepository;
-$alunoList = $alunoRepo->getCollectionByMateria($idMat);
+$alunoList = $alunoRepo->getCollectionByMateria($idD);
 	//header("location:login.php");
 ?>
 <!DOCTYPE html>
@@ -21,6 +36,7 @@ $alunoList = $alunoRepo->getCollectionByMateria($idMat);
 	<?php require '../templates/header.php' ?>
 	<br>
 	<div class="container">
+			<a href="../logout.php" class="btn btn-primary"> Sair </a>
 		<h1 class="lead text-title text-center">Computação Básica</h1>
 		<div class="row" id="area_aluno">
 			<div class="col-sm-6">
@@ -58,7 +74,7 @@ $alunoList = $alunoRepo->getCollectionByMateria($idMat);
 							</div>
 						</div>
 					</div>
-					<input type="hidden" value="<?php echo $idMat; ?>" id="_id_mat"  />
+					<input type="hidden" value="<?php echo $idD; ?>" id="_id_mat"  />
 					<input type="hidden" value="<?php echo date('Y-m-d H:i:s'); ?>" id="_dataAtual"  />
 					<input type="hidden" value="" id="_id_alu"  />
 					<input type="button" onclick="insertAluPresencaNota()" value="Enviar" class="ml-5 btn btn-primary" />
