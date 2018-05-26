@@ -37,7 +37,6 @@ $alunoList = $alunoRepo->getCollectionByMateria($idD);
 	<br>
 	<div class="container">
 			<a href="../logout.php" class="btn btn-primary"> Sair </a>
-		<h1 class="lead text-title text-center">Computação Básica</h1>
 		<div class="row" id="area_aluno">
 			<div class="col-sm-6">
 				<div class="row">

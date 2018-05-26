@@ -13,7 +13,7 @@ class DB
       try{
         self::$conexao = new PDO("mysql:host=localhost;dbname=".self::$dbName, self::$usuario, self::$senha);
       }catch(PDOException $erro){
-        die("ERRO ao acessar o Banco de Dados : " . $erro->getMessage());
+        die("Houve um erro. Volte mais tarde");
       }
     }
     self::$conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
