@@ -7,9 +7,31 @@
       <title>Portal UNG</title>
    </head>
    <body id="portal">
+            <div class="modal" id="modal_help_acess" tabindex="-1" role="dialog">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title"><b>Acessibilidade<b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                   </button>
+                </div>
+                <div class="modal-body">
+                 <h4 >Clique o botão ATIVAR para ativar a acessibilidade e ouvir o conteúdo da tela.
+                 </h4>
+                 <p style="color:red;">Para aumentar ou diminuir o texto pressione ctrl +/ctrl-.</p>
+                 <p style="color:red;">Aperte o botão volume caso necessário.</p>
+              </div>
+              <div class="modal-footer">
+                 <button type="button" id="btn_turn_on_voice" class="btn btn-primary btn-lg">ATIVAR</button>
+                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+           </div>
+        </div>
+      </div>
       <div  class="container-fluid all">
          <div class="row">
-            <div class="slide-all col-sm-9 d-none d-sm-block"></div>
+            <div data-rvContext="Imagem da UNG" class="slide-all col-sm-9 d-none d-sm-block"></div>
             <div class="menu-all col-sm">
                <a data-rvContext="UNG. Grupo Ser. fazendo o melhor por você" href="#">
                <img class="menu-logo img-fluid" src="skin/images/logo.png" alt="Logo" />
@@ -76,6 +98,7 @@
          </div>
       </div>
       <script src="lib/skin/js/jquery.min.js"></script>
+      <script src="lib/skin/js/bootstrap.bundle.min.js"></script>
       <script src="lib/skin/js/responsivevoice.js"></script>
       <script src="lib/skin/js/acessibilidade.js"></script>
    </body>
